@@ -25,7 +25,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public void inserir(Cliente ce) {
         String sql = "INSERT INTO clientes (id, nome, DataNasc, endereco, telefone, cpf) ";
-        sql += " VALUES (0,?, ?, ?, ?, ?)";
+        sql += " VALUES (0, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, ce.getNome());
@@ -50,9 +50,9 @@ public class ClienteDAOImpl implements ClienteDAO {
                 Cliente cliente = new Cliente();
                 cliente.setNome(rs.getString("nome"));
                 cliente.setDataNasc(rs.getDate("datanasc").toLocalDate());
-                cliente.setNome(rs.getString("endereco"));
-                cliente.setNome(rs.getString("telefone"));
-                cliente.setNome(rs.getString("cpf"));
+                cliente.setEndereco(rs.getString("endereco"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setCpf(rs.getString("cpf"));
                 lista.add(cliente);
             }
         } catch (SQLException e) {

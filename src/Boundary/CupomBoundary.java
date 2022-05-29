@@ -63,8 +63,9 @@ public class CupomBoundary extends Application {
         btnAdicionar.setOnAction( e -> control.adicionar());
 
         btnPesquisar.setOnAction(e -> control.pesquisar());
+        
 
-        Scene scn = new Scene(principal, 300, 200);
+        Scene scn = new Scene(principal, 320, 250);
         stage.setScene(scn);
         stage.setTitle("Cupom");
         stage.show();

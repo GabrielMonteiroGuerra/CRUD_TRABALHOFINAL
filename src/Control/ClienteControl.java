@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumnBase;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import DAO.ClienteDAOImpl;
 import Entity.Cliente;
+import Boundary.ClienteBoundary;
 
 public class ClienteControl {
     private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
@@ -45,20 +47,22 @@ public class ClienteControl {
     public ClienteControl() {
         TableColumn<Cliente, String> col1 = new TableColumn<>("Nome");
         col1.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        TableColumn<Cliente, String> col3 = new TableColumn<>("Endereco");
+        col3.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+        TableColumn<Cliente, String> col4 = new TableColumn<>("Telefone");
+        col4.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        TableColumn<Cliente, String> col5 = new TableColumn<>("CPF");
+        col5.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         TableColumn<Cliente, String> col2 = new TableColumn<>("Data Nasc");
         col2.setCellValueFactory((itemData)-> {
             LocalDate dt = itemData.getValue().getDataNasc();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             return new ReadOnlyStringWrapper(dt.format(formatter));
-            //TableColumn<Cliente, String> col3 = new TableColumn<>("Endereco");
-            //col3.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-            //TableColumn<Cliente, String> col4 = new TableColumn<>("Telefone");
-            //col4.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-            //TableColumn<Cliente, String> col5 = new TableColumn<>("CPF");
-            //col5.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+            
         });
 
-        table.getColumns().addAll(col1,col2/*, col3, col4, col5*/);
+  
+		table.getColumns().addAll(col1, col2, col3, col4, col5);
 
         table.setItems(clientes);
     }
@@ -84,7 +88,10 @@ public class ClienteControl {
         clientes.clear();
         clientes.addAll(lista);
     }
+       
+    
     public TableView getTable() {
         return table;
     }
+
 }

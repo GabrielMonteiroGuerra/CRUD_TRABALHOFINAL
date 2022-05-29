@@ -12,6 +12,7 @@ import java.util.List;
 
 import DAO.CupomDAOImpl;
 import Entity.Cupom;
+import Boundary.CupomBoundary;
 
 public class CupomControl {
     private ObservableList<Cupom> cupons = FXCollections.observableArrayList();
@@ -41,18 +42,18 @@ public class CupomControl {
     public CupomControl() {
         TableColumn<Cupom, String> col1 = new TableColumn<>("Nome");
         col1.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        TableColumn<Cupom, String> col3 = new TableColumn<>("Codigo");
+        col3.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        TableColumn<Cupom, String> col4 = new TableColumn<>("Valor");
+        col4.setCellValueFactory(new PropertyValueFactory<>("valor"));
         TableColumn<Cupom, String> col2 = new TableColumn<>("Validade");
         col2.setCellValueFactory((itemData)-> {
             LocalDate dt = itemData.getValue().getValidade();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            return new ReadOnlyStringWrapper(dt.format(formatter));
-           // TableColumn<Cupom, String> col3 = new TableColumn<>("Codigo");
-           // col3.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-           // TableColumn<Cupom, String> col4 = new TableColumn<>("Valor");
-           // col4.setCellValueFactory(new PropertyValueFactory<>("valor"));
+            return new ReadOnlyStringWrapper(dt.format(formatter));           
         });
 
-        table.getColumns().addAll(col1, col2/*,col3, col4*/);
+        table.getColumns().addAll(col1, col2,col3, col4);
 
         table.setItems(cupons);
     }
@@ -76,7 +77,11 @@ public class CupomControl {
         cupons.clear();
         cupons.addAll(lista);
     }
+
+    
+    
     public TableView getTable() {
         return table;
     }
+
 }
