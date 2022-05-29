@@ -1,10 +1,10 @@
-package DAO;
+package persistence;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import Entity.Cliente;
+import entity.Cliente;
 
 public class ClienteDAOImpl implements ClienteDAO {
     private final static String JDBC_CLASS = "org.mariadb.jdbc.Driver";
@@ -12,8 +12,34 @@ public class ClienteDAOImpl implements ClienteDAO {
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASS = "123456";
     private Connection con;
+     
 
     public ClienteDAOImpl() {
+    	
+    	 try {
+             Class.forName("org.mariadb.jdbc.Driver");
+             System.out.println("Biblioteca importada");
+             Connection con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
+             System.out.println("Conectado com o banco de dados");
+
+             String sql = "SELECT * FROM clientes";
+             PreparedStatement stmt = con.prepareStatement(sql);
+
+
+             ResultSet rs = stmt.executeQuery();
+             while (rs.next()) {
+                 String nome = rs.getString("nome");
+                 Date datanasc = rs.getDate("Datanasc");
+                 String endereco = rs.getString("endereco");
+                 String telefone = rs.getString("telefone");
+                 String cpf = rs.getString("cpf");
+                 
+             }
+             con.close();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+ 	
         try {
             Class.forName(JDBC_CLASS);
             con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);

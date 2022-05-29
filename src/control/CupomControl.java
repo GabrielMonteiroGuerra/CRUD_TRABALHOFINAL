@@ -1,4 +1,4 @@
-package Control;
+package control;
 
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -6,13 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import persistence.CupomDAOImpl;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import DAO.CupomDAOImpl;
-import Entity.Cupom;
-import Boundary.CupomBoundary;
+import boundary.CupomBoundary;
+import entity.Cupom;
 
 public class CupomControl {
     private ObservableList<Cupom> cupons = FXCollections.observableArrayList();

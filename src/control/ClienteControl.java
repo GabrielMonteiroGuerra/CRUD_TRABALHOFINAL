@@ -1,4 +1,4 @@
-package Control;
+package control;
 
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -7,13 +7,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumnBase;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import persistence.ClienteDAOImpl;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import DAO.ClienteDAOImpl;
-import Entity.Cliente;
-import Boundary.ClienteBoundary;
+import boundary.ClienteBoundary;
+import entity.Cliente;
 
 public class ClienteControl {
     private ObservableList<Cliente> clientes = FXCollections.observableArrayList();

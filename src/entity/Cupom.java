@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 import java.time.LocalDate;
 
@@ -8,6 +8,7 @@ public class Cupom {
 	private LocalDate validade;
 	private String codigo;
 	private String valor;
+	
 	public int getId() {
 		return id;
 	}

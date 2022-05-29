@@ -1,4 +1,4 @@
-package Boundary;
+package boundary;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -19,7 +19,7 @@ import javafx.util.converter.LocalDateStringConverter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import Control.CupomControl;
+import control.CupomControl;
 
 public class CupomBoundary extends Application {
     private TextField txtNome = new TextField();
@@ -28,6 +28,8 @@ public class CupomBoundary extends Application {
     private TextField txtValor = new TextField();
     private Button btnAdicionar = new Button("Adicionar");
     private Button btnPesquisar = new Button("Pesquisar");
+    private Button btnLimpar = new Button("Limpar");
+    private Button btnSair = new Button(" Sair ");
     private CupomControl control = new CupomControl();
 
     @Override
@@ -46,6 +48,8 @@ public class CupomBoundary extends Application {
         grid.add(txtValor, 1, 3);
         grid.add(btnAdicionar, 0, 4);
         grid.add(btnPesquisar, 1, 4);
+        grid.add(btnLimpar, 0, 5);
+        grid.add(btnSair, 1, 5);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateStringConverter ldc =
@@ -64,8 +68,19 @@ public class CupomBoundary extends Application {
 
         btnPesquisar.setOnAction(e -> control.pesquisar());
         
+        btnSair.setOnAction(e -> 
+        System.exit(0)
+        );
+        
+        btnLimpar.setOnAction(e -> {
+        	txtNome.setText("");
+        	txtValidade.setText("");
+        	txtCodigo.setText("");
+        	txtValor.setText("");
+    });
+        
 
-        Scene scn = new Scene(principal, 320, 250);
+        Scene scn = new Scene(principal, 600, 400);
         stage.setScene(scn);
         stage.setTitle("Cupom");
         stage.show();

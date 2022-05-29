@@ -1,10 +1,10 @@
-package DAO;
+package persistence;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import Entity.Cupom;
+import entity.Cupom;
 
 public class CupomDAOImpl implements CupomDAO {
     private final static String JDBC_CLASS = "org.mariadb.jdbc.Driver";
@@ -14,6 +14,30 @@ public class CupomDAOImpl implements CupomDAO {
     private Connection con;
 
     public CupomDAOImpl() {
+    	 try {
+             Class.forName("org.mariadb.jdbc.Driver");
+             System.out.println("Biblioteca importada");
+             Connection con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
+             System.out.println("Conectado com o banco de dados");
+
+             String sql = "SELECT * FROM cupons";
+             PreparedStatement stmt = con.prepareStatement(sql);
+
+
+             ResultSet rs = stmt.executeQuery();
+             while (rs.next()) {
+                 String nome = rs.getString("nome");
+                 Date validade = rs.getDate("validade");
+                 String codigo = rs.getString("codigo");
+                 String valor = rs.getString("valor");
+                
+             }
+             con.close();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }	
+    	
+    	
         try {
             Class.forName(JDBC_CLASS);
             con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);

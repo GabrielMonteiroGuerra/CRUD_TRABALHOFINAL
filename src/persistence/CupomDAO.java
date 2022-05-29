@@ -1,8 +1,8 @@
-package DAO;
+package persistence;
 
 import java.util.List;
 
-import Entity.Cupom;
+import entity.Cupom;
 
 public interface CupomDAO {
     void inserir(Cupom c);

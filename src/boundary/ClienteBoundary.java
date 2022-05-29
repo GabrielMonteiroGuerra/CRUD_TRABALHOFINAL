@@ -1,4 +1,4 @@
-package Boundary;
+package boundary;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -19,7 +19,7 @@ import javafx.util.converter.LocalDateStringConverter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import Control.ClienteControl;
+import control.ClienteControl;
 
 public class ClienteBoundary extends Application {
     private TextField txtNome = new TextField();
@@ -29,6 +29,8 @@ public class ClienteBoundary extends Application {
     private TextField txtCpf = new TextField();
     private Button btnAdicionar = new Button("Adicionar");
     private Button btnPesquisar = new Button("Pesquisar");
+    private Button btnLimpar = new Button("Limpar");
+    private Button btnSair = new Button(" Sair ");
     private ClienteControl control = new ClienteControl();
 
     @Override
@@ -49,6 +51,8 @@ public class ClienteBoundary extends Application {
         grid.add(txtCpf, 1, 4);
         grid.add(btnAdicionar, 0, 5);
         grid.add(btnPesquisar, 1, 5);
+        grid.add(btnLimpar, 0, 6);
+        grid.add(btnSair, 1, 6);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateStringConverter ldc =
@@ -67,8 +71,20 @@ public class ClienteBoundary extends Application {
 
         btnPesquisar.setOnAction(e -> control.pesquisar());
         
+        btnSair.setOnAction(e -> 
+        System.exit(0)
+        );
+        
+        btnLimpar.setOnAction(e -> {
+        	txtNome.setText("");
+        	txtData.setText("");
+        	txtEndereco.setText("");
+        	txtTelefone.setText("");
+        	txtCpf.setText("");
+    });
+        
 
-        Scene scn = new Scene(principal, 400, 250);
+        Scene scn = new Scene(principal, 600, 400);
         stage.setScene(scn);
         stage.setTitle("Cliente");
         stage.show();

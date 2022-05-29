@@ -1,8 +1,8 @@
-package DAO;
+package persistence;
 
 import java.util.List;
 
-import Entity.Cliente;
+import entity.Cliente;
 
 public interface ClienteDAO {
     void inserir(Cliente ce);
